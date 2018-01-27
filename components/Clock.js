@@ -27,28 +27,35 @@ export class Clock extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            time: moment("05:00", "mm:ss"),
-		};
+            time: moment("00:10", "mm:ss"),
+        };
+        this.baseState = this.state;
 	}
-  
-  componentDidMount() {
+
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if ((nextProps.status === 'running') & (this.state.time.minutes() + this.state.time.seconds() === 0)) {
+            return false;
+        } else {
+            console.log('truuuuu')
+            return true;
+        }
+    }
+
+  componentDidUpdate(prevProps) {
     setTimeout(() => {
-        if (this.props.turn === true) {
+        if (this.props.turn === true & this.props.status === 'running') {
 			this.setState({
                 time: moment(this.state.time.diff(moment("00:01","mm:ss")))
             });
-        }
-		}, 1000);
-  }
-  
-  componentDidUpdate() {
-    setTimeout(() => {
-        if (this.props.turn === true) {
-			this.setState({
-                time: moment(this.state.time.diff(moment("00:01","mm:ss")))
-            });
-        }
-		}, 1000);
+        } 
+    }, 1000);
+    if ((this.props.status === 'initial') & (prevProps.status === 'running')) {
+        console.log('intial status')
+        this.setState({
+            time: moment("05:00", "mm:ss"),
+        });
+    }
   }
 
 	render() {

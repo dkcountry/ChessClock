@@ -12,11 +12,16 @@ import {Clock} from './Clock.js';
 export class Counter extends Component {
   constructor(props) {
     super(props)
-    this.state = { player1: false, player2: false }
+    this.state = { player1: false, player2: false, status: 'initial' }
   }
 
   onPress1 = () => {
-    if ((this.state.player1 === false) & (this.state.player2 === false)) {
+    if (this.state.status === 'initial') {
+      this.setState({
+        status: "running"
+      });
+    }
+    if ((this.state['player1'] === false) & (this.state.player2 === false)) {
       this.setState({
         player2: true
       });
@@ -29,6 +34,11 @@ export class Counter extends Component {
   }
 
   onPress2 = () => {
+    if (this.state.status === 'initial') {
+      this.setState({
+        status: "running"
+      });
+    }
     if ((this.state.player1 === false) & (this.state.player2 === false)) {
       this.setState({
         player1: true
@@ -41,29 +51,56 @@ export class Counter extends Component {
     }
   }
 
+  reset = () => {
+    this.setState({
+      player1: false,
+      player2: false,
+      status: 'initial'
+    });
+  }
+
  render() {
     return (
       <View style={styles.container}>
         <TouchableHighlight
-         style={styles.button}
-         onPress={this.onPress1}
+          style={styles.button}
+          onPress={this.onPress1}
         >
           <View style={[styles.countContainer]}>
-            <Clock turn={this.state.player1}/>
+            <Clock 
+              turn={this.state.player1} 
+              status={this.state.status}
+            />
           </View>
         </TouchableHighlight>
         
-      <View style={styles.spaceContainer} />
+        <View style={styles.spaceContainer} />
 
         <TouchableHighlight
-         style={styles.button}
-         onPress={this.onPress2}
+          style={styles.button}
+          onPress={this.onPress2}
         >
           <View style={[styles.countContainer]}>
-            <Clock turn={this.state.player2}/>
+            <Clock 
+              turn={this.state.player2}
+              status={this.state.status}
+            />
           </View>
         </TouchableHighlight>
         
+        <View style={styles.spaceContainer} />
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.reset}
+        >
+          <View style={[styles.countContainer]}>
+            <Text>
+              Reset
+            </Text>
+          </View>
+        </TouchableHighlight>
+
       </View>
       
     )

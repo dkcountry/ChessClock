@@ -6,20 +6,17 @@ import {
   View,
   Button
 } from 'react-native';
-// import {ViewColoredBoxesWithText} from './components/Hello.js';
+
 import {Counter} from './components/Press.js';
 import moment from 'moment';
 
 
 export default class App extends Component {
   render() {
-    console.log(moment().second());
     const dateToFormat = '1976-04-19T12:59-0500';
     return (
       <View style={styles.container}>
-
-      <Counter/>
-
+        <Counter/>
       </View>
     );
   }
