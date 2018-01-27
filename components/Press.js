@@ -117,7 +117,7 @@ export class Counter extends Component {
           onPress={this.pause}
         >
           <View style={[styles.countContainer]}>
-            <Text>
+            <Text style={{color: 'white'}}>
               Pause
             </Text>
           </View>
@@ -130,7 +130,7 @@ export class Counter extends Component {
           onPress={this.reset}
         >
           <View style={[styles.countContainer]}>
-            <Text>
+            <Text style={{color: 'white'}}>
               Reset
             </Text>
           </View>
