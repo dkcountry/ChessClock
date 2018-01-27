@@ -59,9 +59,23 @@ export class Counter extends Component {
     });
   }
 
+  pause = () => {
+    this.setState({
+      player1: false,
+      player2: false,
+    });
+  }
+
  render() {
     return (
       <View style={styles.container}>
+      
+      <View
+                style={{
+                    flexDirection: 'column',
+                    height: 100,
+                    padding: 10,
+                }}>
         <TouchableHighlight
           style={styles.button}
           onPress={this.onPress1}
@@ -87,11 +101,32 @@ export class Counter extends Component {
             />
           </View>
         </TouchableHighlight>
+
+        </View>
         
-        <View style={styles.spaceContainer} />
+        <View style={styles.spaceContainer2} />
+
+        <View
+                style={{
+                    flexDirection: 'row',
+                    height: 100,
+                    padding: 10,
+                }}>
+        <TouchableHighlight
+          style={styles.menuButton}
+          onPress={this.pause}
+        >
+          <View style={[styles.countContainer]}>
+            <Text>
+              Pause
+            </Text>
+          </View>
+        </TouchableHighlight>
+
+        <View style={{padding: 10}} />
 
         <TouchableHighlight
-          style={styles.button}
+          style={styles.menuButton}
           onPress={this.reset}
         >
           <View style={[styles.countContainer]}>
@@ -100,7 +135,7 @@ export class Counter extends Component {
             </Text>
           </View>
         </TouchableHighlight>
-
+          </View>
       </View>
       
     )
@@ -111,12 +146,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 10
+    paddingHorizontal: 5
   },
   button: {
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#DDDDDD',
-    padding: 10
+    padding: 10,
+  },
+  menuButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: -15,
+    backgroundColor: "skyblue",
+    width: 100,
+    height: 50,
+    padding: 5
   },
   countContainer: {
     alignItems: 'center',
@@ -128,6 +173,10 @@ const styles = StyleSheet.create({
   spaceContainer: {
     alignItems: 'center',
     padding: 100
+  },
+  spaceContainer2: {
+    alignItems: 'center',
+    padding: 25
   },
 })
 

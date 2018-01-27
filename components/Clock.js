@@ -27,7 +27,7 @@ export class Clock extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            time: moment("00:10", "mm:ss"),
+            time: moment("05:00", "mm:ss"),
         };
         this.baseState = this.state;
     }
