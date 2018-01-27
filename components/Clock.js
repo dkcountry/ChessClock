@@ -37,7 +37,6 @@ export class Clock extends Component {
         if ((nextProps.status === 'running') & (this.state.time.minutes() + this.state.time.seconds() === 0)) {
             return false;
         } else {
-            console.log('truuuuu')
             return true;
         }
     }
