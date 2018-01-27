@@ -28,7 +28,7 @@ export class Counter extends Component {
     } else if (this.state.player1 === true) {
       this.setState({
         player1: false,
-        player2: true
+        player2: true 
       });
     }
   }

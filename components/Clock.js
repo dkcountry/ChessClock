@@ -30,20 +30,12 @@ export class Clock extends Component {
             time: moment("00:10", "mm:ss"),
         };
         this.baseState = this.state;
-	}
-
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if ((nextProps.status === 'running') & (this.state.time.minutes() + this.state.time.seconds() === 0)) {
-            return false;
-        } else {
-            return true;
-        }
     }
-
+ 
   componentDidUpdate(prevProps) {
     setTimeout(() => {
-        if (this.props.turn === true & this.props.status === 'running') {
+        if (this.props.turn === true & this.props.status === 'running' &
+        (this.state.time.minutes() + this.state.time.seconds() > 0)) {
 			this.setState({
                 time: moment(this.state.time.diff(moment("00:01","mm:ss")))
             });
